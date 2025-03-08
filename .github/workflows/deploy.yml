@@ -1,0 +1,36 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main  # Adjust this branch if necessary
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Deploy to EC2
+      env:
+        EC2_HOST: ec2-user@your-ec2-public-ip
+        SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+        EC2_PROJECT_DIR: "/home/ec2-user/your-project"
+      run: |
+        echo "$SSH_PRIVATE_KEY" > private_key.pem
+        chmod 600 private_key.pem
+
+        ssh -o StrictHostKeyChecking=no -i private_key.pem $EC2_HOST << 'EOF'
+          cd $EC2_PROJECT_DIR
+
+          # Pull the latest changes
+          git pull origin main
+
+          # Install dependencies
+          npm install
+
+          # Restart app with PM2
+          pm2 restart app.js || pm2 start app.js
+        EOF
