@@ -31,6 +31,9 @@ jobs:
           # Install dependencies
           npm install
 
+          # Build the Vite app
+          npm run build
+
           # Start/Restart app with PM2 on port 5000
           pm2 start app.js --name "portfolio" --watch --env production -- --port=5000 || pm2 restart portfolio
 

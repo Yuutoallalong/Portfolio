@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "node app.js"
+    "start": "pm2 serve dist 5000 --spa"
+
   },
   "dependencies": {
     "@types/react-icons": "^2.2.7",
