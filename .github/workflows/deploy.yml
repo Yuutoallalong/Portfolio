@@ -31,6 +31,10 @@ jobs:
           # Install dependencies
           npm install
 
-          # Restart app with PM2
-          pm2 restart app.js || pm2 start app.js
+          # Start/Restart app with PM2 on port 5000
+          pm2 start app.js --name "portfolio" --watch --env production -- --port=5000 || pm2 restart portfolio
+
+          # Save PM2 process for auto-restart on reboot
+          pm2 save
+          pm2 startup
         EOF
