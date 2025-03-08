@@ -17,7 +17,7 @@ jobs:
       env:
         EC2_HOST: ubuntu@54.79.117.167
         SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-        EC2_PROJECT_DIR: "/home/ec2-user/Portfolio"
+        EC2_PROJECT_DIR: "/home/ubuntu/Portfolio"
       run: |
         echo "$SSH_PRIVATE_KEY" > private_key.pem
         chmod 600 private_key.pem
