@@ -9,25 +9,36 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "start": "pm2 serve dist 5000 --spa"
-
   },
   "dependencies": {
     "@types/react-icons": "^2.2.7",
     "axios": "^1.8.1",
+    "body-parser": "^1.20.3",
+    "chart.js": "^4.4.8",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
     "framer-motion": "^12.4.10",
+    "geoip-lite": "^1.4.10",
+    "mongoose": "^8.12.1",
+    "nodemailer": "^6.10.0",
     "react": "^19.0.0",
+    "react-chartjs-2": "^5.3.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
     "@types/react": "^19.0.10",
+    "@types/react-chartjs-2": "^2.0.2",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react-swc": "^3.8.0",
+    "autoprefixer": "^10.4.21",
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.0.12",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
     "vite": "^6.2.0"

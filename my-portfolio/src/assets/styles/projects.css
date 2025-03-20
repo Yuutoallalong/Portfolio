@@ -1,0 +1,15 @@
+.projects {
+  margin: 300px 200px;
+}
+
+.projects a {
+  text-decoration: none;
+  color: rgb(177, 96, 25);
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.projects p {
+  color: rgb(255, 0, 0);
+  font-weight: bold;
+}

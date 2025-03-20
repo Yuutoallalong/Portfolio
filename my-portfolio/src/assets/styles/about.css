@@ -1,77 +1,52 @@
-.about {
-    background: #ffffff;
-    color: #2e2e2e;
-    padding: 60px 40px;
-    max-width: 900px;
-    margin: 0 auto;
-    margin-top: -20px;
+.about-container {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f79d00, #fcb045);
+}
+
+.about-card {
+    display: flex;
+    background-color: #ffffff;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    position: relative;
-    z-index: 2;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.about:hover {
+.about-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
 }
 
-.about h2 {
-    font-size: 3rem;
-    color: #f39c12;
-    text-align: center;
-    margin-bottom: 25px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+.about-image {
+    flex:1;
+    display: flex;
 }
 
-.about p {
+.about-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    flex: 1;
+}
+
+.about-content {
+    padding: 40px;
+    flex: 3;
+}
+
+.about-content h2 {
+    font-size: 2.5rem;
+    color: #2e2e2e;
+    margin-bottom: 15px;
+}
+
+.about-content p {
     line-height: 1.8;
     margin-bottom: 15px;
     font-size: 1.1rem;
+    color: #555;
 }
-
-.about b {
-    color: #f39c12;
-    font-weight: bold;
-}
-
-.about .highlight {
-    background: rgba(243, 156, 18, 0.2);
-    color: #f39c12;
-    padding: 2px 6px;
-    border-radius: 5px;
-    font-weight: 600;
-    box-shadow: 0 2px 5px rgba(243, 156, 18, 0.2);
-}
-
-.about .highlight-alt {
-    background: #2e2e2e;
-    color: #fff;
-    padding: 2px 6px;
-    border-radius: 5px;
-    font-weight: 600;
-}
-
-.about {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.about.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.about {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.about.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-

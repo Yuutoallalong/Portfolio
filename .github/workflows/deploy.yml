@@ -13,11 +13,16 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v4
 
+    - name: Debug Connectivity
+      run: |
+        ping 54.79.117.167
+        curl -v telnet://54.79.117.167:22
+
     - name: Deploy to EC2
       env:
         EC2_HOST: ubuntu@54.79.117.167
         SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-        EC2_PROJECT_DIR: "/home/ubuntu/Portfolio"
+        EC2_PROJECT_DIR: "/home/ubuntu/Portfolio/my-portfolio"
       run: |
         echo "$SSH_PRIVATE_KEY" > private_key.pem
         chmod 600 private_key.pem
@@ -34,8 +39,8 @@ jobs:
           # Build the Vite app
           npm run build
 
-          # Start/Restart app with PM2 on port 5000
-          pm2 start app.js --name "portfolio" --watch --env production -- --port=5000 || pm2 restart portfolio
+          # Start/Restart app with PM2
+          pm2 serve dist 5000 --spa --name "portfolio" || pm2 restart portfolio
 
           # Save PM2 process for auto-restart on reboot
           pm2 save
