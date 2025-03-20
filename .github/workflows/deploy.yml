@@ -31,6 +31,9 @@ jobs:
         ssh -o StrictHostKeyChecking=no -i private_key.pem $EC2_HOST << 'EOF'
           cd /home/ubuntu/Portfolio/my-portfolio
 
+          # Clean up old PM2 processes to prevent conflicts
+          pm2 delete portfolio || true
+
           # Pull the latest changes
           git pull origin main
 
@@ -38,12 +41,12 @@ jobs:
           npm install
 
           # Build the Vite app
-          npm run build
+          npm run build || (echo "Retrying build..." && npm run build)
 
-          # Start/Restart app with PM2
-          pm2 serve dist 5000 --spa --name "portfolio" || pm2 restart portfolio
-
-          # Save PM2 process for auto-restart on reboot
+          # Start PM2 with proper restart logic for dynamic features
+          pm2 start "npm run build && npm run preview" --name "portfolio"
           pm2 save
-          pm2 startup
+
+          # Ensure Nginx is reloaded for updated changes
+          sudo nginx -t && sudo systemctl restart nginx
         EOF
