@@ -29,7 +29,7 @@ jobs:
         chmod 600 private_key.pem
 
         ssh -o StrictHostKeyChecking=no -i private_key.pem $EC2_HOST << 'EOF'
-          cd $EC2_PROJECT_DIR
+          cd /home/ubuntu/Portfolio/my-portfolio
 
           # Pull the latest changes
           git pull origin main
