@@ -4,21 +4,24 @@ import react from '@vitejs/plugin-react-swc';
 export default defineConfig({
     plugins: [react()],
     build: {
-        outDir: 'dist',      // Ensures build files go to "dist"
-        emptyOutDir: true,   // Clears old build files before building
+        outDir: 'dist',
+        emptyOutDir: true,   // Ensures old files are removed
+        cssCodeSplit: true,  // Reduces CSS bloat
+        minify: 'esbuild',   // Faster and more efficient minification
+        sourcemap: false,    // Disables sourcemaps for faster builds
         rollupOptions: {
             output: {
-                entryFileNames: 'assets/[name].[hash].js',
-                chunkFileNames: 'assets/[name].[hash].js',
-                assetFileNames: 'assets/[name].[hash][extname]'
-            }
-        }
+                manualChunks: (id) => {
+                    if (id.includes('node_modules')) {
+                        return 'vendor';  // Chunk vendor files to improve performance
+                    }
+                },
+            },
+        },
     },
     server: {
         proxy: {
-            '/contact': 'http://localhost:1025'  // Proxy API requests to Node.js server
+            '/dashboard': 'http://localhost:1025',
         },
-        host: '0.0.0.0',  // Ensures Vite server is accessible externally
-        port: 3000         // Vite development server port
-    }
+    },
 });

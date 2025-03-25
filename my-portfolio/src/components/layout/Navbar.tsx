@@ -1,9 +1,7 @@
 import "../../assets/styles/navbar.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function Navbar() {
-  const [indicatorPosition, setIndicatorPosition] = useState(0);
-
   useEffect(() => {
     const sections = [
       { id: "home", offset: 0 },
@@ -26,19 +24,13 @@ export default function Navbar() {
       const scrollY = window.scrollY;
       let activeIndex = 0;
 
-      // Find the current section
       for (let i = 0; i < sections.length; i++) {
         if (scrollY >= sections[i].offset) {
           activeIndex = i;
         }
       }
-
-      // Calculate position of the indicator based on active section
-      const newPosition = activeIndex * 60; // Adjust spacing for visual alignment
-      setIndicatorPosition(newPosition);
     };
 
-    // Calculate section offsets initially
     calculateOffsets();
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", calculateOffsets);
