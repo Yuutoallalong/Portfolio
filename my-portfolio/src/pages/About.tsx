@@ -16,7 +16,7 @@ export default function About() {
             <img src={about_img} alt="Profile" />
           </div>
           <div className="about-content">
-            <h2>About Me</h2>
+            <h2 className="about-heading">About Me</h2>
             <p>
               Hi, I'm <b>Parathakorn Thanamee (Yuu)</b>, a third-year Computer
               Engineering student at

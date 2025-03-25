@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import "../assets/styles/home.css";
 
 export default function Home() {
-    return (
-      <motion.div
+  return (
+    <motion.div
       className="home"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -11,10 +11,10 @@ export default function Home() {
       transition={{ duration: 0.8 }}
     >
       <div className="overlay">
-        <h1>Welcome to My Portfolio</h1>
-        <p>Intro to YuutoUtopia.</p>
-        </div>
+        <p className="home-heading leading-none">FULL STACK</p>
+        <p className="home-heading text-yellow-500 leading-none">/DEVOPS</p>
+        <p className="home-description mt-2">Welcome to YuutoUtopia</p>
+      </div>
     </motion.div>
-    );
-  }
-  
+  );
+}

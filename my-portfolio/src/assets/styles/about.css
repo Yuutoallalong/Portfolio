@@ -1,52 +1,58 @@
 .about-container {
-    margin-top: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #f79d00, #fcb045);
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f79d00, #fcb045);
 }
 
 .about-card {
-    display: flex;
-    background-color: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    width: 80%;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .about-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
 }
 
 .about-image {
-    flex:1;
-    display: flex;
+  flex: 1;
+  display: flex;
 }
 
 .about-image img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    flex: 1;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  flex: 1;
 }
 
 .about-content {
-    padding: 40px;
-    flex: 3;
+  padding: 40px;
+  flex: 3;
 }
 
 .about-content h2 {
-    font-size: 2.5rem;
-    color: #2e2e2e;
-    margin-bottom: 15px;
+  font-size: 2.5rem;
+  color: #2e2e2e;
+  margin-bottom: 15px;
 }
 
 .about-content p {
-    line-height: 1.8;
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-    color: #555;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.about-heading {
+  font-family: var(--font-anton), sans-serif;
+  font-size: 45px;
+  margin-bottom: 50px;
 }

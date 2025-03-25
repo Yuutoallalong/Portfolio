@@ -13,3 +13,9 @@
   color: rgb(255, 0, 0);
   font-weight: bold;
 }
+
+.project-heading {
+  font-family: var(--font-anton), sans-serif;
+  font-size: 45px;
+  margin-bottom: 50px;
+}

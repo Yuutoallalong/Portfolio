@@ -19,7 +19,7 @@ export default function Contact() {
       exit={{ opacity: 0, y: -50 }}
       transition={{ duration: 0.8 }}
     >
-      <h2>Contact Me</h2>
+      <h2 className="contact-heading">Contact Me</h2>
       <div className="contact-links">
         {contactLinks.map((contact) => (
           <a

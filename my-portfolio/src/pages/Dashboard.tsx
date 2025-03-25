@@ -48,7 +48,7 @@ export default function Dashboard() {
       transition={{ duration: 0.8 }}
     >
       <div>
-        <h2>Visitor Analytics Dashboard</h2>
+        <h2 className="dashboard-heading">Visitor Analytics</h2>
         <Bar data={chartData} />
       </div>
     </motion.div>

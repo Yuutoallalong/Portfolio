@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-anton: 'Anton', sans-serif;
+  --font-roboto-flex: 'Roboto Flex', sans-serif;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -5,7 +17,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: var(--font-roboto-flex);
   background-color: #efeded;
   color: rgb(46, 46, 46);
   display: flex;
