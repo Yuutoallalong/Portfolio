@@ -22,14 +22,13 @@ export default function Navbar() {
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      let activeIndex = 0;
-
+  
       for (let i = 0; i < sections.length; i++) {
-        if (scrollY >= sections[i].offset) {
-          activeIndex = i;
-        }
+          if (scrollY >= sections[i].offset) {
+          }
       }
-    };
+  };
+  
 
     calculateOffsets();
     window.addEventListener("scroll", handleScroll);
