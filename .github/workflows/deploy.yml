@@ -13,10 +13,10 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Debug DNS and Port
-        run: |
-          nslookup 54.79.117.167
-          curl -v telnet://54.79.117.167:22
+      # - name: Debug DNS and Port
+      #   run: |
+      #     nslookup 54.79.117.167
+      #     curl -v telnet://54.79.117.167:22
 
       - name: Deploy to EC2
         env:
