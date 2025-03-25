@@ -34,8 +34,8 @@ jobs:
             git reset --hard
 
             # Clean up old PM2 processes to prevent conflicts
-            pm2 delete portfolio || true
-            pm2 delete dashboard || true
+            pm2 list | grep -q "portfolio" && pm2 delete portfolio
+            pm2 list | grep -q "dashboard" && pm2 delete dashboard
 
             # Pull the latest changes
             git pull origin main
@@ -46,9 +46,10 @@ jobs:
             # Build the Vite app
             npm run build || (echo "Retrying build..." && npm run build)
 
-            # Start the Dashboard Service
-            pm2 start "node src/server/server.js" --name "dashboard"
-            pm2 save
+            # # Start the Dashboard Service
+            # pm2 start "node src/server/server.js" --name "dashboard" --max-memory-restart 200M
+            # pm2 save
+
 
             # Restart Nginx for the latest build
             sudo nginx -t && sudo systemctl restart nginx
