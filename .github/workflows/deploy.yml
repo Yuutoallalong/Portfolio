@@ -10,43 +10,45 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-    - name: Debug DNS and Port
-      run: |
-        nslookup 54.79.117.167
-        curl -v telnet://54.79.117.167:22
-      
+      - name: Debug DNS and Port
+        run: |
+          nslookup 54.79.117.167
+          curl -v telnet://54.79.117.167:22
 
-    - name: Deploy to EC2
-      env:
-        EC2_HOST: ubuntu@54.79.117.167
-        SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-        EC2_PROJECT_DIR: "/home/ubuntu/Portfolio/my-portfolio"
-      run: |
-        echo "$SSH_PRIVATE_KEY" | tr -d '\r' > private_key.pem
-        chmod 600 private_key.pem
+      - name: Deploy to EC2
+        env:
+          EC2_HOST: ubuntu@54.79.117.167
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          EC2_PROJECT_DIR: "/home/ubuntu/Portfolio/my-portfolio"
+        run: |
+          echo "$SSH_PRIVATE_KEY" | tr -d '\r' > private_key.pem
+          chmod 600 private_key.pem
 
-        ssh -o StrictHostKeyChecking=no -i private_key.pem $EC2_HOST << 'EOF'
-          cd /home/ubuntu/Portfolio/my-portfolio
+          ssh -o StrictHostKeyChecking=no -i private_key.pem $EC2_HOST << 'EOF'
+            cd /home/ubuntu/Portfolio/my-portfolio
 
-          # Clean up old PM2 processes to prevent conflicts
-          pm2 delete portfolio || true
+            # Ensure untracked changes are reset
+            git reset --hard
 
-          # Pull the latest changes
-          git pull origin main
+            # Clean up old PM2 processes to prevent conflicts
+            pm2 delete portfolio || true
 
-          # Install dependencies
-          npm install
+            # Pull the latest changes
+            git pull origin main
 
-          # Build the Vite app
-          npm run build || (echo "Retrying build..." && npm run build)
+            # Install dependencies
+            npm install
 
-          # Start PM2 with proper restart logic for dynamic features
-          pm2 start "npm run build && npm run preview" --name "portfolio"
-          pm2 save
+            # Build the Vite app
+            npm run build || (echo "Retrying build..." && npm run build)
 
-          # Ensure Nginx is reloaded for updated changes
-          sudo nginx -t && sudo systemctl restart nginx
-        EOF
+            # Start PM2 with proper restart logic for dynamic features
+            pm2 start "npm run build && npm run preview" --name "portfolio"
+            pm2 save
+
+            # Ensure Nginx is reloaded for updated changes
+            sudo nginx -t && sudo systemctl restart nginx
+          EOF
